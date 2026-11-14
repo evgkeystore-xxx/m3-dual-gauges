@@ -1,0 +1,16 @@
+{
+  "schema": 1,
+  "components": [
+    {
+      "id": "m3_dual_gauges",
+      "kind": "app",
+      "path": "apps/m3_dual_gauges",
+      "build": "unit",
+      "title": "M3 Dual Gauges",
+      "description": "Dwa motywy zegarów M3 na ekranie iDrive 8. Wersja testowa odczytu RPM i prędkości.",
+      "mguHmi": [
+        "ID8"
+      ]
+    }
+  ]
+}
