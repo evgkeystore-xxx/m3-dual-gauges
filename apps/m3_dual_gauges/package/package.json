@@ -1,7 +1,7 @@
 {
   "name": "m3_dual_gauges",
-  "version": "0.1.0",
-  "description": "M3 Dual Gauges for iDrive 8 (prototype)",
+  "version": "0.1.1",
+  "description": "M3 Dual Gauges iDrive 8 experimental",
   "main": "javascript/runner.js",
   "private": false,
   "oapAppSettings": {
@@ -17,7 +17,6 @@
     "someipManifest": "manifest.json"
   },
   "files": [
-    "config",
     "rhmiData",
     "package.json",
     "permissions.json",
