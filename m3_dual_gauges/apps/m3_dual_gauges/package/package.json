@@ -1,0 +1,38 @@
+{
+  "name": "m3_dual_gauges",
+  "version": "0.1.0",
+  "description": "M3 Dual Gauges for iDrive 8 (prototype)",
+  "main": "javascript/runner.js",
+  "private": false,
+  "oapAppSettings": {
+    "maxDiskUsage": 26214400,
+    "cpuLimit": 20,
+    "memoryThresholdKB": 131072,
+    "priority": "PRIO_MEDIUM",
+    "visibility": "FOREGROUND",
+    "latencyClass": "FOREGROUND",
+    "loggingId": "M3DG",
+    "userLoginRequired": false,
+    "backgroundPriority": 150,
+    "someipManifest": "manifest.json"
+  },
+  "files": [
+    "config",
+    "rhmiData",
+    "package.json",
+    "permissions.json",
+    "javascript",
+    "manifest.json"
+  ],
+  "dependencies": {
+    "oap-sdk": "24.10.2"
+  },
+  "engines": {
+    "node": ">=8.7.0"
+  },
+  "author": "Owner",
+  "license": "UNLICENSED",
+  "mguHmi": [
+    "ID8"
+  ]
+}
