@@ -1,0 +1,16 @@
+{
+  "schema": 1,
+  "components": [
+    {
+      "id": "m3_dual_gauges",
+      "kind": "app",
+      "path": "apps/m3_dual_gauges",
+      "build": "unit",
+      "title": "M3 Dual Gauges",
+      "description": "M3 Dual Gauges 0.2.1: bundled local OnlineApp host, fixes module resolution during build",
+      "mguHmi": [
+        "ID8"
+      ]
+    }
+  ]
+}

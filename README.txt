@@ -1,2 +1,5 @@
-M3 Dual Gauges 0.2.0 - repo root files. Replace root mgu-repo.json and upload tgz.
-This is a fork of the working IterioDev Car Data OAP host and renderer. Live readout requires supported BMW signals, renderer mgu-render. Test only while parked.
+M3 Dual Gauges 0.2.1 - FIX build failure on 0.2.0.
+Upload both files from this ZIP to root of GitHub repository. No extra directories.
+The startup host code is now INLINED in src/main.js, fixing cannot build: requires ./online-host not an app module.
+Version 0.2.1 triggers upgrade instead of already-installed.
+This is still UNTESTED on vehicle; renderer and real RPM/speed access must be confirmed after install.
