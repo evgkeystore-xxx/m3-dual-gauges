@@ -33,5 +33,10 @@
   "license": "UNLICENSED",
   "mguHmi": [
     "ID8"
-  ]
+  ],
+  "mguLocalOnly": true,
+  "productName": "M3 Dual Gauges",
+  "mguRequires": {
+    "mgu-deploy": "0.7.5"
+  }
 }
