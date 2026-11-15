@@ -7,7 +7,7 @@
       "path": "apps/m3_dual_gauges",
       "build": "unit",
       "title": "M3 Dual Gauges",
-      "description": "Version 0.3.0 rebuilt from reference Car Data 1.4.1 lifecycle, RHMI and renderer structure",
+      "description": "M3 Dual Gauges 0.3.1 - corrected source modules manifest",
       "mguHmi": [
         "ID8"
       ]

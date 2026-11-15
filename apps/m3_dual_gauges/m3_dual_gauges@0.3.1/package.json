@@ -1,0 +1,41 @@
+{
+  "name": "m3_dual_gauges",
+  "version": "0.3.1",
+  "description": "M3 Dual Gauges - two read-only live gauges on iDrive 8",
+  "private": false,
+  "main": "javascript/runner.js",
+  "mguHmi": [
+    "ID8"
+  ],
+  "mguRequires": {
+    "mgu-deploy": "0.7.5"
+  },
+  "oapAppSettings": {
+    "maxDiskUsage": 10485760,
+    "cpuLimit": 50,
+    "memoryThresholdKB": 102400,
+    "priority": "PRIO_LOW",
+    "visibility": "FOREGROUND",
+    "latencyClass": "FOREGROUND",
+    "loggingId": "OA97",
+    "userLoginRequired": false,
+    "backgroundPriority": 150,
+    "someipManifest": "manifest.json"
+  },
+  "files": [
+    "icon.png",
+    "javascript",
+    "manifest.json",
+    "package.json",
+    "permissions.json",
+    "renderer",
+    "rhmiData",
+    "npm-shrinkwrap.json"
+  ],
+  "dependencies": {
+    "oap-sdk": "24.10.2"
+  },
+  "mguLocalOnly": true,
+  "productName": "M3 Dual Gauges",
+  "author": "M3 Dual Gauges project"
+}
