@@ -1,7 +1,12 @@
-# M3 Dual Gauges 0.3.2 (test build)
+# M3 Dual Gauges 0.3.3 — iDrive 8
 
-Fix for `mgu-app.json: modules must name the app's .js files, the entry first`.
+Aktualizacja wersji 0.3.2, ktora uruchamiala ekran. Zachowuje jej kod i konfiguracje uruchomieniowa.
 
-Source modules are now in `apps/m3_dual_gauges/src/` **next to** `mgu-app.json`, as required for the repo-tree source build. The staged OAP tree lives separately in `apps/m3_dual_gauges/m3_dual_gauges@0.3.2/`.
+Zmiany:
+- RHMI SID_0 i SID_7: M3 Dual Gauges zamiast Car Data (oba jezyki).
+- Ikona aplikacji i zasob RHMI zastapione ikona M3 (zachowano nazwe zasobu, aby nie zerwac referencji).
+- Przesunieto i zmniejszono zegary i opisy, aby nie nachodzily na pasek klimatyzacji.
+- Pelna paczka: apps/, tools/, mgu-repo.json i plik TGZ.
 
-Update your GitHub `main` branch by uploading the contents of this ZIP to the root, retaining relative paths. Check Store offers 0.3.2. This fixes source layout validation but does not prove runtime startup or live vehicle data. Test while parked.
+Zainstaluj jako aktualizacje 0.3.3 w tym samym repozytorium.
+Nie ma gwarancji odczytu RPM ani predkosci — sprawdz oddzielnie na postoju.
