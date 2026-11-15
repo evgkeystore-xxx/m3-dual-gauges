@@ -1,0 +1,16 @@
+{
+  "schema": 1,
+  "components": [
+    {
+      "id": "m3_dual_gauges",
+      "kind": "app",
+      "path": "apps/m3_dual_gauges",
+      "build": "unit",
+      "title": "M3 Dual Gauges",
+      "description": "Version 0.3.0 rebuilt from reference Car Data 1.4.1 lifecycle, RHMI and renderer structure",
+      "mguHmi": [
+        "ID8"
+      ]
+    }
+  ]
+}
