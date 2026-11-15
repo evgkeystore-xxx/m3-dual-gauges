@@ -1,0 +1,198 @@
+[
+  {
+    "file": "boost.png",
+    "sha256": "5649b75f31145f77eaab488ae3c22fb41e711c4b22f23828df5a830385dbc210",
+    "size": 7120,
+    "in_tgz": "package/renderer/assets/icons/boost.png",
+    "embedded_in": "package/renderer/runtime/icons21.js"
+  },
+  {
+    "file": "brand.png",
+    "sha256": "5ce5d02b4d814147505ac8c592ebc93f00e5ac111a35c21abd4d8a00756adf3f",
+    "size": 3260,
+    "in_tgz": "package/renderer/assets/icons/brand.png",
+    "embedded_in": "package/renderer/runtime/icons21.js"
+  },
+  {
+    "file": "brightness.png",
+    "sha256": "9e91ad905a9897d1b6d4e8e37c4194aae3e74460884565e28de75641ff75aadb",
+    "size": 4569,
+    "in_tgz": "package/renderer/assets/icons/brightness.png",
+    "embedded_in": "package/renderer/runtime/icons21.js"
+  },
+  {
+    "file": "camera.png",
+    "sha256": "46ccb107d15a6352830222e59b09832df510738ead0e3479b4289e8d3931aed7",
+    "size": 6008,
+    "in_tgz": "package/renderer/assets/icons/camera.png",
+    "embedded_in": "package/renderer/runtime/icons21.js"
+  },
+  {
+    "file": "check.png",
+    "sha256": "5f3179874e9ee829ec764e9dfed85bc21e78e1ade0db74ac1beba5f549b3d59d",
+    "size": 8483,
+    "in_tgz": "package/renderer/assets/icons/check.png",
+    "embedded_in": "package/renderer/runtime/icons21.js"
+  },
+  {
+    "file": "coolant.png",
+    "sha256": "fc067bc19040105a8ba36a1ab84d23d521957ce39863cf62ebaae7474c741e73",
+    "size": 3743,
+    "in_tgz": "package/renderer/assets/icons/coolant.png",
+    "embedded_in": "package/renderer/runtime/icons21.js"
+  },
+  {
+    "file": "delay.png",
+    "sha256": "d0b1320d5fb3faf0ea3e62451dd10f7378313af66408e7e2617004d3ecf80949",
+    "size": 6011,
+    "in_tgz": "package/renderer/assets/icons/delay.png",
+    "embedded_in": "package/renderer/runtime/icons21.js"
+  },
+  {
+    "file": "eco.png",
+    "sha256": "f70d9089c5a1a6d3fadc9810b29ae207284b79a53449f3324799c12fc476d028",
+    "size": 7039,
+    "in_tgz": "package/renderer/assets/icons/eco.png",
+    "embedded_in": "package/renderer/runtime/icons21.js"
+  },
+  {
+    "file": "ecuPremium.png",
+    "sha256": "a721b72519ebf947d45f78d4f5b37260805a29c313cf679e9bd52c3729c468e7",
+    "size": 56193,
+    "in_tgz": "package/renderer/assets/icons/ecuPremium.png",
+    "embedded_in": "package/renderer/runtime/icons21.js"
+  },
+  {
+    "file": "engine.png",
+    "sha256": "0357a1a17280f66e131e31fc01de871d26a23ff3e85305cd07e77f66237d6099",
+    "size": 2417,
+    "in_tgz": "package/renderer/assets/icons/engine.png",
+    "embedded_in": "package/renderer/runtime/icons21.js"
+  },
+  {
+    "file": "engineCover.png",
+    "sha256": "bb44746a68f4c4adcbe2ae53cbd31fcdb9e5a8a3bbd3c182c129fc34ba0517cd",
+    "size": 23790,
+    "in_tgz": "package/renderer/assets/icons/engineCover.png",
+    "embedded_in": "package/renderer/runtime/icons21.js"
+  },
+  {
+    "file": "flame.png",
+    "sha256": "42dea6ea92a846ee273ad65447e3ae5be232cbc0a790b65066126182d7dfb353",
+    "size": 9610,
+    "in_tgz": "package/renderer/assets/icons/flame.png",
+    "embedded_in": "package/renderer/runtime/icons21.js"
+  },
+  {
+    "file": "fuel.png",
+    "sha256": "d325a9273994799da96ba07e40f870913edc322208d3c2ad65ea6f81a1891dca",
+    "size": 2800,
+    "in_tgz": "package/renderer/assets/icons/fuel.png",
+    "embedded_in": "package/renderer/runtime/icons21.js"
+  },
+  {
+    "file": "gear.png",
+    "sha256": "46bf2d66079fa198ea77eabc5adfec92b32d28fd0064ced6562285653d162305",
+    "size": 2739,
+    "in_tgz": "package/renderer/assets/icons/gear.png",
+    "embedded_in": "package/renderer/runtime/icons21.js"
+  },
+  {
+    "file": "link.png",
+    "sha256": "a408bc76669aec3e4d5f5bff00338634238a388a0731680f711859020d447fba",
+    "size": 4928,
+    "in_tgz": "package/renderer/assets/icons/link.png",
+    "embedded_in": "package/renderer/runtime/icons21.js"
+  },
+  {
+    "file": "logs.png",
+    "sha256": "be246912d85c70267823cb00196ff7020b4e867bd87f599eec44c4040a1a8eec",
+    "size": 1698,
+    "in_tgz": "package/renderer/assets/icons/logs.png",
+    "embedded_in": "package/renderer/runtime/icons21.js"
+  },
+  {
+    "file": "m.png",
+    "sha256": "62bffd18fe1acc0975ebea6fd1dbd0b6b6e4991b2e4946863bded120609c907c",
+    "size": 3833,
+    "in_tgz": "package/renderer/assets/icons/m.png",
+    "embedded_in": "package/renderer/runtime/icons21.js"
+  },
+  {
+    "file": "oil.png",
+    "sha256": "2761c20618f419cc3a991aa7e9a80f2c5a2e413f069568a0c55b712b6ca1a74d",
+    "size": 3147,
+    "in_tgz": "package/renderer/assets/icons/oil.png",
+    "embedded_in": "package/renderer/runtime/icons21.js"
+  },
+  {
+    "file": "power.png",
+    "sha256": "fbafbbee5b032bea1826918182929898522aa4ade1e3d2df099a6159d02427a8",
+    "size": 4352,
+    "in_tgz": "package/renderer/assets/icons/power.png",
+    "embedded_in": "package/renderer/runtime/icons21.js"
+  },
+  {
+    "file": "rpm.png",
+    "sha256": "3d43b68c1ca3f85081d3b8b98dcd49425c9ddb8a540216161f2f7534ff6d9612",
+    "size": 7297,
+    "in_tgz": "package/renderer/assets/icons/rpm.png",
+    "embedded_in": "package/renderer/runtime/icons21.js"
+  },
+  {
+    "file": "settings.png",
+    "sha256": "686f56a536279fffe814edc01e116138b3c4530d8dfa7d5587ebbc78ae86d011",
+    "size": 11332,
+    "in_tgz": "package/renderer/assets/icons/settings.png",
+    "embedded_in": "package/renderer/runtime/icons21.js"
+  },
+  {
+    "file": "shield.png",
+    "sha256": "91132ecfd91cf771b71a0ec6072d3ae31901b47bd24cb2a1c0bf7ab6a1ff3861",
+    "size": 6493,
+    "in_tgz": "package/renderer/assets/icons/shield.png",
+    "embedded_in": "package/renderer/runtime/icons21.js"
+  },
+  {
+    "file": "sport.png",
+    "sha256": "3a154fec59ee059eb04af7128b798b2bd929984fe2996f1265f23ed3fb160c07",
+    "size": 3826,
+    "in_tgz": "package/renderer/assets/icons/sport.png",
+    "embedded_in": "package/renderer/runtime/icons21.js"
+  },
+  {
+    "file": "sportplus.png",
+    "sha256": "7af8881ca48b4c864f0103aad468a40c3140cba75957518116d517ca54cc88bd",
+    "size": 5760,
+    "in_tgz": "package/renderer/assets/icons/sportplus.png",
+    "embedded_in": "package/renderer/runtime/icons21.js"
+  },
+  {
+    "file": "timer.png",
+    "sha256": "ef9c29eab967e4ebc823e5510709f1fb9e127f3b7cd82177cf6a95f7a6fe1b66",
+    "size": 6575,
+    "in_tgz": "package/renderer/assets/icons/timer.png",
+    "embedded_in": "package/renderer/runtime/icons21.js"
+  },
+  {
+    "file": "torque.png",
+    "sha256": "37473b283e29eada27b1fa573e1981381157599f41991ba376b7b245f5a0a54f",
+    "size": 6461,
+    "in_tgz": "package/renderer/assets/icons/torque.png",
+    "embedded_in": "package/renderer/runtime/icons21.js"
+  },
+  {
+    "file": "turbo.png",
+    "sha256": "a2c3fd052cc95db851ab87cbbf0f04c5ade6ac8dc1bc6a72bfa99d43d830473f",
+    "size": 8372,
+    "in_tgz": "package/renderer/assets/icons/turbo.png",
+    "embedded_in": "package/renderer/runtime/icons21.js"
+  },
+  {
+    "file": "wave.png",
+    "sha256": "5075a1ebab0b8496a331006871e2399f9c878cc717e196f2be6fb4a4450c5b12",
+    "size": 4138,
+    "in_tgz": "package/renderer/assets/icons/wave.png",
+    "embedded_in": "package/renderer/runtime/icons21.js"
+  }
+]

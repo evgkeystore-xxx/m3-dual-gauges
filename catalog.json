@@ -3,7 +3,7 @@
   "components": [
     {
       "id": "m3_dual_gauges",
-      "version": "0.5.0",
+      "version": "0.7.3",
       "title": "M3 Dual Gauges",
       "description": "Wspolny zgodny renderer; rzeczywiste odczyty, pelna diagnostyka i oznaczone DEMO po braku danych. Bez flash/przelaczania map.",
       "mguHmi": [
@@ -22,15 +22,15 @@
       "build": "unit",
       "icon": "apps/m3_dual_gauges/icon.png",
       "artifact": {
-        "name": "m3_dual_gauges@0.5.0.tgz",
-        "url": "apps/m3_dual_gauges/m3_dual_gauges@0.5.0.tgz",
-        "size": 223484,
-        "sha256": "b564486c4a725e735ba80e5a82d4d543d6902291841d69944a17d5ea0da09c14"
+        "name": "m3_dual_gauges@0.7.3.tgz",
+        "url": "apps/m3_dual_gauges/m3_dual_gauges@0.7.3.tgz",
+        "size": 1640796,
+        "sha256": "e670e72ce448830dba9b33b997d2521698327fbd768ff6daaa7b02751bb192b5"
       }
     },
     {
       "id": "ks_pops_controller",
-      "version": "1.5.0",
+      "version": "2.3.0",
       "title": "Pops Controller",
       "description": "Telemetria i potwierdzane sterowanie klapa MHD. Brak API regulacji burble: profile tylko DEMO. Bez flash/przelaczania map.",
       "mguHmi": [
@@ -49,15 +49,15 @@
       "build": "unit",
       "icon": "apps/ks_pops_controller/icon.png",
       "artifact": {
-        "name": "ks_pops_controller@1.5.0.tgz",
-        "url": "apps/ks_pops_controller/ks_pops_controller@1.5.0.tgz",
-        "size": 216597,
-        "sha256": "4284d54c1013ea183db49bd26bfbf4037db164fde5867c0756502fa21e4e3fb3"
+        "name": "ks_pops_controller@2.3.0.tgz",
+        "url": "apps/ks_pops_controller/ks_pops_controller@2.3.0.tgz",
+        "size": 1640006,
+        "sha256": "6fc3d59fe06a3006822684ecd4e61d66d583933a3a59403942fc36c134b8a950"
       }
     },
     {
       "id": "ks_m3_cockpit",
-      "version": "1.2.0",
+      "version": "1.4.3",
       "title": "M3 Cockpit Studio",
       "description": "Wspolny zgodny renderer; rzeczywiste odczyty, pelna diagnostyka i oznaczone DEMO po braku danych. Bez flash/przelaczania map.",
       "mguHmi": [
@@ -76,10 +76,10 @@
       "build": "unit",
       "icon": "apps/ks_m3_cockpit/icon.png",
       "artifact": {
-        "name": "ks_m3_cockpit@1.2.0.tgz",
-        "url": "apps/ks_m3_cockpit/ks_m3_cockpit@1.2.0.tgz",
-        "size": 215855,
-        "sha256": "04d067f004bad690afe2738094fb5fe52acadae1770323a20735309067cd7c17"
+        "name": "ks_m3_cockpit@1.4.3.tgz",
+        "url": "apps/ks_m3_cockpit/ks_m3_cockpit@1.4.3.tgz",
+        "size": 1640122,
+        "sha256": "34e7ab99df697e522ce87990fa552f30f65c685fe863e9a5972937ba7918e146"
       }
     },
     {

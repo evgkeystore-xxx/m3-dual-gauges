@@ -1,6 +1,6 @@
 {
   "id": "ks_pops_controller",
-  "version": "1.5.0",
+  "version": "2.3.0",
   "title": "Pops Controller",
   "description": "Telemetria i potwierdzane sterowanie klapa MHD. Brak API regulacji burble: profile tylko DEMO. Bez flash/przelaczania map.",
   "mguHmi": [
