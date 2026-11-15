@@ -1,8 +1,8 @@
 {
   "id": "ks_pops_controller",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "title": "Pops Controller",
-  "description": "Odczyty na zywo, status i pelne bledy, automatyczne DEMO tylko bez danych. Nie zmienia mapy ECU. Kopia ustawien, nie mapy. Profile wydechu tylko lokalnie; sterowanie MHD niedostepne.",
+  "description": "Telemetria i potwierdzane sterowanie klapa MHD. Brak API regulacji burble: profile tylko DEMO. Bez flash/przelaczania map.",
   "mguHmi": [
     "ID8"
   ],
@@ -11,7 +11,8 @@
   ],
   "requires": {
     "mgu-deploy": "0.7.5",
-    "m3-diagnostics": "1.0.0"
+    "mgu-render": "0.6.21",
+    "m3-suite-diagnostics": "1.0.0"
   },
-  "icon": "icon.png"
+  "uninstallable": true
 }

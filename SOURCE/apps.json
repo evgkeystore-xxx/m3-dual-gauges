@@ -1,0 +1,35 @@
+[
+  {
+    "id": "m3_dual_gauges",
+    "version": "0.5.0",
+    "title": "M3 Dual Gauges",
+    "kind": "dual",
+    "accent": "#f33f61",
+    "uuid": "3f9148bf-b9ea-4349-be32-89452cb8c208",
+    "strings": "41c00840-73fc-4103-b106-f2080f41c73d",
+    "resources": "73aad0c0-210e-448a-be10-7e4238ec21b3",
+    "entry": "73ee799c-5df6-4cbc-87de-92c746d7ae26"
+  },
+  {
+    "id": "ks_pops_controller",
+    "version": "1.5.0",
+    "title": "Pops Controller",
+    "kind": "pops",
+    "accent": "#ff7440",
+    "uuid": "b120d651-76f4-4cf6-aeff-ae2a5638159b",
+    "strings": "150b35ee-24f2-4055-947d-95988f32f5c7",
+    "resources": "95ef380c-5ae8-4a25-85ac-3b3651a1563b",
+    "entry": "42c8e8e5-4826-4c89-9386-78bff800b185"
+  },
+  {
+    "id": "ks_m3_cockpit",
+    "version": "1.2.0",
+    "title": "M3 Cockpit Studio",
+    "kind": "cockpit",
+    "accent": "#ae7dff",
+    "uuid": "5bce7b8e-e0dd-5820-ac4c-dc3867d19f8d",
+    "strings": "f0d329a9-1873-5398-a1b2-d0999d49e38d",
+    "resources": "05158935-6a60-5a87-8ae8-482f0379d39c",
+    "entry": "679f366a-b82c-57c5-8065-e9ec7c3ed38b"
+  }
+]

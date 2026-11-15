@@ -1,0 +1,104 @@
+{
+  "schema": 2,
+  "components": [
+    {
+      "id": "m3_dual_gauges",
+      "version": "0.5.0",
+      "title": "M3 Dual Gauges",
+      "description": "Wspolny zgodny renderer; rzeczywiste odczyty, pelna diagnostyka i oznaczone DEMO po braku danych. Bez flash/przelaczania map.",
+      "mguHmi": [
+        "ID8"
+      ],
+      "needs": [
+        "renderer"
+      ],
+      "requires": {
+        "mgu-deploy": "0.7.5",
+        "mgu-render": "0.6.21",
+        "m3-suite-diagnostics": "1.0.0"
+      },
+      "uninstallable": true,
+      "kind": "app",
+      "build": "unit",
+      "icon": "apps/m3_dual_gauges/icon.png",
+      "artifact": {
+        "name": "m3_dual_gauges@0.5.0.tgz",
+        "url": "apps/m3_dual_gauges/m3_dual_gauges@0.5.0.tgz",
+        "size": 223484,
+        "sha256": "b564486c4a725e735ba80e5a82d4d543d6902291841d69944a17d5ea0da09c14"
+      }
+    },
+    {
+      "id": "ks_pops_controller",
+      "version": "1.5.0",
+      "title": "Pops Controller",
+      "description": "Telemetria i potwierdzane sterowanie klapa MHD. Brak API regulacji burble: profile tylko DEMO. Bez flash/przelaczania map.",
+      "mguHmi": [
+        "ID8"
+      ],
+      "needs": [
+        "renderer"
+      ],
+      "requires": {
+        "mgu-deploy": "0.7.5",
+        "mgu-render": "0.6.21",
+        "m3-suite-diagnostics": "1.0.0"
+      },
+      "uninstallable": true,
+      "kind": "app",
+      "build": "unit",
+      "icon": "apps/ks_pops_controller/icon.png",
+      "artifact": {
+        "name": "ks_pops_controller@1.5.0.tgz",
+        "url": "apps/ks_pops_controller/ks_pops_controller@1.5.0.tgz",
+        "size": 216597,
+        "sha256": "4284d54c1013ea183db49bd26bfbf4037db164fde5867c0756502fa21e4e3fb3"
+      }
+    },
+    {
+      "id": "ks_m3_cockpit",
+      "version": "1.2.0",
+      "title": "M3 Cockpit Studio",
+      "description": "Wspolny zgodny renderer; rzeczywiste odczyty, pelna diagnostyka i oznaczone DEMO po braku danych. Bez flash/przelaczania map.",
+      "mguHmi": [
+        "ID8"
+      ],
+      "needs": [
+        "renderer"
+      ],
+      "requires": {
+        "mgu-deploy": "0.7.5",
+        "mgu-render": "0.6.21",
+        "m3-suite-diagnostics": "1.0.0"
+      },
+      "uninstallable": true,
+      "kind": "app",
+      "build": "unit",
+      "icon": "apps/ks_m3_cockpit/icon.png",
+      "artifact": {
+        "name": "ks_m3_cockpit@1.2.0.tgz",
+        "url": "apps/ks_m3_cockpit/ks_m3_cockpit@1.2.0.tgz",
+        "size": 215855,
+        "sha256": "04d067f004bad690afe2738094fb5fe52acadae1770323a20735309067cd7c17"
+      }
+    },
+    {
+      "id": "m3-suite-diagnostics",
+      "kind": "tool",
+      "version": "1.0.0",
+      "title": "M3 Suite Diagnostics",
+      "description": "Lokalny panel pelnych bledow/startu trzech aplikacji. Port 8471. Tylko odczyt; bez ECU/flash.",
+      "mguHmi": [
+        "ID8"
+      ],
+      "optional": false,
+      "uninstallable": true,
+      "artifact": {
+        "name": "m3-suite-diagnostics@1.0.0.tgz",
+        "url": "packages/m3-suite-diagnostics@1.0.0.tgz",
+        "size": 5471,
+        "sha256": "ce156fe24668513eaacc4b7ba814e4a0108f08768fb2c379e873d5ad3c184bad"
+      }
+    }
+  ]
+}

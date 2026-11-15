@@ -1,135 +1,171 @@
-# BMW M3 — kompletny zestaw trzech aplikacji
+# BMW M3 — komplet trzech aplikacji i niezależna diagnostyka
 
-Wydanie przygotowane 15 listopada 2026 r. dla istniejącego MGU Store / iDrive 8. Podstawa uruchamiania: działający u użytkownika M3 Dual Gauges 0.3.4 i dostarczony Car Data 1.4.1. Nie jest to oficjalny produkt BMW, MHD ani IterioDev.
+**Wersje:** M3 Dual Gauges 0.5.0, Pops Controller 1.5.0, M3 Cockpit Studio 1.2.0.
+**System docelowy:** istniejący MGU Store i renderer na BMW M3 G80 / iDrive 8.
+**Stan weryfikacji:** testy lokalne kodu, ramek komunikacji i pakowania. Nie wykonano testu tej wersji na rzeczywistym BMW ani z jego oryginalnym SDK. Instalacja nie jest dowodem otwierania ekranu.
 
-| Aplikacja | Identyfikator | Wersja |
-|---|---|---|
-| M3 Dual Gauges | `m3_dual_gauges` | **0.4.0** |
-| Pops Controller | `ks_pops_controller` | **1.4.0** |
-| M3 Cockpit Studio | `ks_m3_cockpit` | **1.1.0** |
+## Aktualizacja wyglądu i dotyku — 15.11.2026
 
-`M3 Diagnostics 1.0.0` jest dodatkową usługą techniczną, a nie czwartą aplikacją na ekranie samochodu.
+Wersje 0.5.0 / 1.5.0 / 1.2.0 to pełne aplikacje w nowym stylu Motorsport:
+ciemnogranatowe panele, niebiesko-czerwone podświetlenia, pozioma nawigacja,
+duże przyciski, suwaki dotykowe i telemetria z prawej. Styl jest autorską
+interpretacją przesłanego przykładu. Wszystkie ekrany zachowują miejsce dla
+oryginalnej belki klimatyzacji.
+
+**Ważna poprawka dotyku:** ekran renderowany przez GPU nie musi posiadać
+fokusu standardowego widgetu RHMI. Poprzedni kod potrafił w takim przypadku
+wyłączyć przechwytywanie dotyku, mimo że ekran nadal był widoczny. Obecna
+wersja zwalnia obszar dotyku dopiero wtedy, gdy ekran naprawdę znika.
+Przyciski reagują na DOWN albo na pojedynczy UP, a suwaki na DOWN/MOVE/UP.
+Dodałem test wysyłający rzeczywisty komunikat TOUCH przez symulowany socket
+renderera, a nie tylko bezpośrednie wywołanie metody przycisku.
+W pierwszej kolejności aplikacje łączą się z `mgu-render` na
+`/run/mgu-render/render.sock`, aby nie trafić przypadkowo na drugi renderer
+przez `/run/mgu-renderd/renderd.sock`. Jeśli nowszy socket nie odpowie,
+po 3 sekundach próbują zgodnego starego socketu.
+
+**Jak sprawdzić, dlaczego dotyk nie działa:** po uruchomieniu na dole
+po lewej odczytaj `DOTYK GOTOWY : N` albo `DOTYK NIEAKTYWNY : 0`.
+N to licznik odebranych zdarzeń. Dotknij dowolnej zakładki i sprawdź, czy
+liczba rośnie. Jeśli nie rośnie, otwórz `http://172.16.222.97:8471`
+(aktualny adres IP MGU może być inny) i pobierz raport aplikacji.
+Sprawdź pola `rendererSocket`, `rendererProtocol`, `touchAdvertised`,
+`touchEvents` oraz `lastTouch`. To odróżnia problem renderera od błędu
+wykrywania przycisku. Sprawdź, czy masz aktualną wersję komponentu `mgu-render` w MGU Store
+(np. 0.6.21 widoczną na Twojej liście), a po jej aktualizacji uruchom ponownie
+**samą jednostkę multimedialną**, nie flashuj silnika. Jeżeli READY nie ogłasza
+obsługi dotyku, sama aktualizacja aplikacji nie może jej zapewnić.
+Przeczytaj dziennik `journalctl -u mgu-render` i diagnostykę `8471`.
+
+**Testy w BMW pozostają konieczne.** Lokalny symulator sprawdza działanie
+przycisków, suwaków i obsługę zdarzeń, ale nie potwierdza rzeczywistego
+przekazywania dotyku na Twoim ekranie.
 
 ## Najważniejsze: mapa MHD 700 KM
 
-Kod tego zestawu nie zawiera operacji flashowania DME, zapisu kalibracji, przełączania map, resetowania adaptacji ani kasowania błędów silnika. Odczyt pojazdu wykorzystuje gettery SOME/IP oraz jawnie ograniczone zapytania OBD **service 01**. Przyciski aplikacji nie mogą podać innego numeru usługi diagnostycznej.
+W pakiecie nie ma mapy, jej zastępnika, flashowania ECU ani przełączania slotów.
+Około 700 KM to informacja podana przez właściciela — nie wynik pomiaru aplikacji.
+Aplikacje nie odczytują i nie tworzą pełnej kopii mapy silnika.
 
-Informacja „jedna mapa MHD 700 KM” pochodzi od właściciela. Aplikacje nie potwierdzają jej przez odczyt zawartości ECU. Skala 700 KM w ustawieniach jest wyłącznie skalą wyświetlania, nie ogranicznikiem mocy silnika.
+- **KOPIA USTAWIEŃ** zapisuje prawdziwy plik JSON ustawień aplikacji. Nie jest kopią ECU.
+- **PRZYWRÓĆ USTAWIENIA** przywraca ustawienia aplikacji, nie fabryczne oprogramowanie silnika.
+- **ORYGINALNE** na stronie wydechu oddaje sterowanie klapą aktualnej mapie MHD / sterownikowi. Nie wgrywa fabrycznej mapy.
+- Automatyczne odczyty są tylko odczytami. Sterowanie klapą wymaga dwóch naciśnięć tego samego przycisku i świeżej rzeczywistej prędkości na postoju.
+- Automatyczne DEMO nie zezwala na sterowanie samochodem.
 
-**Kopia ustawień NIE JEST kopią mapy MHD.** Nie ma tutaj zweryfikowanego interfejsu odczytu całej aktualnej kalibracji DME. Przycisk „Kopia mapy ECU — niedostępna” pokazuje tę przyczynę i zapisuje błąd, zamiast tworzyć pustą lub pozorną kopię. Do zabezpieczenia własnej mapy potrzebny jest jej rzeczywisty plik od tunera lub odpowiednio zweryfikowany odczyt; nie zastępuj go przywróceniem programu fabrycznego.
+**Istotne ograniczenie:** w przesłanym przykładzie Live Adjustments regulacja slotów burble dotyczy MG Flasher, nie MHD. Dla Twojego MHD wykorzystany jest osobny mechanizm klapy. Otwarcie klapy NIE generuje strzałów ani nie zmienia długości/agresywności popsów. Te suwaki są jawnie oznaczone jako lokalne DEMO. Kod nie próbuje zastąpić brakującego API zapisem obcej mapy.
 
-## Co faktycznie robi Pops Controller
+## 1. Instalacja przez dotychczasowe repozytorium
 
-Wyświetla rzeczywiste odczyty, gdy jednostka je udostępnia; ma wykresy, profile lokalne, ustawienia, diagnostykę i kopie ustawień.
+1. Zrób lokalną kopię aktualnego katalogu repozytorium na komputerze.
+2. W jego bieżącej zawartości zastąp poprzedni zestaw plików zawartością tego folderu. Nie dodawaj nowej paczki jako kolejnego ZIP-a do starych paczek.
+3. Na głównym poziomie muszą leżeć `mgu-repo.json`, `catalog.json`, `apps` i `tools`. Folder `SOURCE` zawiera kompletny wspólny kod, a aplikacje w `apps` zawierają gotowe TGZ ze wszystkimi swoimi modułami i zasobami.
+4. Usuń z **bieżącego drzewa** repozytorium poprzednie wielkie ZIP-y, dawne rozpakowane kopie aplikacji i duplikaty USB. Ich pozostawienie może nadal przekroczyć limit całego pobieranego repozytorium. Nie trzeba usuwać historii Git. Nie usuwaj innych własnych projektów.
+5. Zatwierdź wszystkie zmiany razem na `main`, zamiast osobno kasować i przywracać `mgu-repo.json` w kolejnych commitach. Zapobiega to chwilowemu `no mgu-repo.json`.
+6. W MGU Store odśwież istniejące źródło `evgkeystore-xxx/m3-dual-gauges`, gałąź `main`.
+7. Zainstaluj **M3 Suite Diagnostics 1.0.0** w narzędziach. Jest zależnością aplikacji, więc Store powinien zainstalować go także automatycznie. To usługa diagnostyczna, nie czwarta aplikacja zegarów.
+8. Zaktualizuj trzy aplikacje do wersji podanych na początku. Nie odinstalowuj Car Data, Store ani działającego renderera.
+9. Pierwszą próbę wykonaj na postoju. Uruchom najpierw Dual Gauges, następnie osobno Cockpit i Pops. Uruchom ponownie MGU przez dostępny przycisk Store, jeżeli Store oznaczy aktualizację jako wymagającą restartu. Nie flashuj ECU.
 
-**Nie reguluje strzałów, Flame, zapłonu ani mocy w mapie MHD.** W dostarczonej wcześniejszej aplikacji nie było działającego sterowania ECU, a dostępne dane nie potwierdzają bezpiecznego API dla tej jednej mapy. Sekcja „Profile / DEMO” jest zatem wyraźnie oznaczonym podglądem sterowania. Zapisuje tylko lokalne wartości w aplikacji. Próba sterowania ECU pokazuje `MHD_CONTROL_UNAVAILABLE` wraz z pełnym opisem i informacją, że nic nie wysłano do DME. Połączenie telemetryczne LIVE nie oznacza połączenia do zapisu ustawień MHD.
+Używaj dotychczasowego źródła, nie dodawaj go drugi raz. Jeżeli Store proponuje osobne identyfikatory zakończone `2` lub konflikt źródeł, zatrzymaj instalację duplikatu: zestaw jest aktualizacją oryginalnych identyfikatorów `m3_dual_gauges`, `ks_pops_controller`, `ks_m3_cockpit`.
 
-Nie ma pozornego przełączania wielu map. Kamera OEM, generowanie dźwięku silnika w głośnikach i zastąpienie fabrycznego zestawu wskaźników nie są zaimplementowane w tym wydaniu. Raport możliwości oznacza je jako `UNAVAILABLE`.
+## 2. Instalacja z USB
 
-## Instalacja — aktualizacja tego samego repozytorium
+Skopiuj zawartość tego folderu do:
 
-Użytkownik ma istniejące źródło `evgkeystore-xxx/m3-dual-gauges`, gałąź `main`. Ta paczka zawiera manifest **wszystkich trzech aplikacji**; nie trzeba osobnego repozytorium dla każdej.
-
-1. Zachowaj kopię dotychczasowych plików repozytorium. Rozpakuj główny ZIP do nowego folderu na komputerze.
-2. Zastąp pliki starego wydania kompletem z nowej paczki. Usuń z drzewa repozytorium stare TGZ, stare katalogi wersji i duplikaty dużych bitmap — samo dogranie nowych plików zostawi je w pobieranym archiwum. Nie usuwaj repozytorium ani lokalnego katalogu `.git`. W istniejącym repozytorium podmień `mgu-repo.json`, trzy katalogi w `apps` oraz pliki `tools` z tego wydania. Nie usuwaj MGU Store ani innych aplikacji w samochodzie.
-3. Prześlij rozpakowane pliki do głównego katalogu repozytorium — nie sam ZIP i nie nadrzędny folder z nazwą archiwum. Katalogi `apps` i `tools` muszą zachować swoje nazwy i położenie.
-4. Zatwierdź całą zmianę jednym commitem. Nie usuwaj manifestu w osobnym commicie: wcześniejsze chwilowe błędy `no mgu-repo.json` występowały właśnie w wersjach repozytorium bez tego pliku.
-5. W MGU Store odśwież to samo źródło. Oczekiwane wersje to **0.4.0, 1.4.0 i 1.1.0**. Nie instaluj poprzednich numerów.
-6. Zainstaluj usługę **M3 Diagnostics 1.0.0** i aktualizacje trzech aplikacji. Usługa jest wpisana jako zależność, którą Store powinien instalować przed aplikacjami. Jeśli nie zrobi tego automatycznie, wybierz ją w kategorii narzędzi. Renderer MGU musi pozostać zainstalowany — korzystamy z tego samego mechanizmu renderowania co działające zegary.
-7. Otwórz aplikacje pojedynczo, na postoju. Sprawdź status w lewym dolnym rogu. Sam napis „Installed” w Store oznacza instalację, nie poprawne otwarcie ekranu.
-
-Podmieniaj, nie dogrywaj obok starego katalogu o innej nazwie. W `apps/<id>/app.json` pozostaje jeden aktualny numer wersji. Nowe katalogi instalacyjne zawierają pełne TGZ ze źródłami; starsze pliki TGZ nie są potrzebne temu wydaniu.
-
-## Dlaczego kod jest w TGZ, a nie w setkach plików obok
-
-Układ jest zgodny z dostarczonym repozytorium przykładowym: `apps/<id>/app.json`, ikona i `<id>@<version>.tgz`; `tools/prebuilt.js` wskazuje istniejący pakiet. TGZ nie jest skrótem ani samym manifestem. Zawiera `mgu-app.json`, oba moduły startowe `src/main.js` i `src/online-host.js`, pełne `lib`, renderer, RHMI, zasoby i licencje.
-
-MGU Store buduje pakiet źródłowy na jednostce, korzystając z jej SDK i zgodnego pliku uruchomieniowego. Nie dołączono kopii BMW SDK. Taki układ nie powiela kilkudziesięciu megabajtów zasobów i ogranicza liczbę plików przesyłanych przez przeglądarkę. Dokładne rozmiary skompresowane i rozpakowane podaje `RAPORT_TESTOW.md`.
-
-Do obejrzenia wszystkich źródeł użyj osobnego ZIP-a `BMW_M3_TRZY_APLIKACJE_PELNE_ZRODLA.zip` albo uruchom lokalnie `python tools/unpack-sources.py`. Powstanie katalog `sources`; nie trzeba przesyłać go do GitHuba. Samo dodanie zewnętrznego katalogu `tools` nie rozwiązuje błędów uruchomienia — tutaj jest on częścią kompletnej, spójnej struktury.
-
-## Alternatywa USB
-
-Osobny ZIP USB ma katalog `mgu-repo/m3-suite`. Skopiuj ten katalog wraz z zawartością na pendrive. Zawiera katalog aplikacji, trzy pełne pakiety, usługę diagnostyczną oraz poprawne sumy kontrolne.
-
-**Nie mieszaj jednocześnie aktualizacji z różnych źródeł tych samych identyfikatorów.** Do już zainstalowanych aplikacji z GitHuba użyj aktualizacji tego samego repozytorium. Store może traktować identyczny identyfikator z innego źródła jako konflikt lub odrębną aplikację. Wariant USB jest alternatywą wdrożenia, nie wymaganym drugim etapem aktualizacji GitHub.
-
-## LIVE, częściowe dane i DEMO
-
-Start nie czeka na połączenie z samochodem: najpierw powstaje ekran, a transport odczytów działa niezależnie. Niedostępny interfejs danych nie powinien blokować otwarcia UI.
-
-* `LACZENIE`: oczekiwanie na pierwsze poprawne dane; brakujące pola to `--`.
-* `LIVE`: świeże RPM i prędkość pochodzą z odczytów pojazdu. Pozostałe parametry mogą być nadal niedostępne i wtedy pozostają `--`.
-* `CZESCIOWO LIVE`: dostępne tylko RPM albo prędkość. Nie zastępujemy pozostałych pól symulacją.
-* `DEMO`: przez 12 sekund nie było żadnego z dwóch podstawowych świeżych odczytów. Włącza się tylko przy aktywnym ustawieniu automatycznego DEMO. Górny pasek i dolny status wyraźnie oznaczają symulację.
-* `BRAK DANYCH`: brak odczytów przy wyłączonym automatycznym DEMO.
-
-Po powrocie prawidłowych danych aplikacja przechodzi z DEMO do odczytów. Odczyt `0 RPM` przy wyłączonym silniku jest prawidłowym zerem, a nie dowodem awarii połączenia. Nie jest zamieniany na DEMO, gdy pochodzi z aktualnej, poprawnej odpowiedzi. Dane odczytane jako `null`, brak właściwości, tekst lub wartość nieważna nie są zamieniane na zero.
-
-Wykres nie zaczyna się od fikcyjnego przebiegu. Po naciśnięciu START zapisuje próbki; zmiana trybu LIVE/DEMO czyści dotychczasowe próbki, aby ich nie mieszać. Okno pomiaru ma 60 sekund; dotknięcie wykresu wybiera próbkę. Kwantyfikowane odczyty mocy są obliczeniem z RPM i momentu, nie pomiarem z hamowni.
-
-## Jakie dane są odczytywane
-
-RPM, prędkość, temperatury oleju i płynu oraz sygnał momentu wykorzystują te same rodziny interfejsów i przeliczenia co dostarczona aplikacja Car Data. Dodatkowe dane są odczytywane przez obsługiwane PID-y OBD 01: kąt zapłonu, napięcie, temperatura dolotu i ciśnienia. Najpierw sprawdzana jest mapa obsługiwanych PID-ów. Nie każdy samochód/program DME udostępnia wszystkie pola.
-
-Doładowanie jest wyznaczane tylko po uzyskaniu ciśnienia bezwzględnego i ciśnienia atmosferycznego. Nie odejmujemy wymyślonej stałej atmosfery. Odczyt ciśnienia w kolektorze nie jest pomiarem celu doładowania ani dowodem poprawności mapy. Ustawienia i wskaźniki tych aplikacji nie zastępują fabrycznych ostrzeżeń ani zegarów.
-
-## Pełne błędy na ekranie i w telefonie
-
-Dolny lewy status pokazuje tryb, źródła RPM i prędkości oraz liczbę aktywnych błędów. Dotknięcie otwiera stronę **Błędy**: kody, pełne komunikaty, stosy wywołań, liczniki powtórzeń, informacje o odzyskanym połączeniu oraz kolejne strony tekstu.
-
-Każda aplikacja zapisuje własne pliki od najwcześniejszego punktu startu, przed inicjalizacją SDK:
-
-```
-/var/opt/public/oap/oap_<UID>/data/m3-boot.log
-/var/opt/public/oap/oap_<UID>/data/m3-events.ndjson
-/var/opt/public/oap/oap_<UID>/data/m3-status.json
+```text
+pendrive/
+  mgu-repo/
+    m3-suite/
+      mgu-repo.json
+      catalog.json
+      apps/
+      tools/
+      packages/
+      SOURCE/
+      ...
 ```
 
-Nowy panel diagnostyczny działa niezależnie od ekranów tych aplikacji:
+W Store otwórz USB i wybierz katalog/katalog aplikacji z tego nośnika. `catalog.json` zawiera rzeczywiste rozmiary i SHA256 trzech źródłowych instalatorów i narzędzia diagnostycznego. Na samochodzie pozostaje wymagany istniejący renderer oraz możliwość połączenia modułów z SDK obecnym w jednostce. Pakiet nie zawiera SDK BMW.
 
+Nie kopiuj samego zewnętrznego ZIP-a jako aplikacji. Nie wybieraj równocześnie dwóch źródeł tej samej aplikacji do osobnych instalacji.
+
+## 3. Dane rzeczywiste i DEMO
+
+Po otwarciu aplikacja próbuje odczytać SOME/IP i wybrane diagnostyczne PID-y OBD z jednostki. Nie trzeba ręcznie wprowadzać RPM ani prędkości.
+
+- **LIVE:** aktualne odczyty RPM i prędkości. Nie oznacza dostępności każdego dodatkowego czujnika.
+- **LIVE / NIEPEŁNE:** dostępny jest jeden z podstawowych odczytów. Inne brakujące liczby pozostają `--`; nie są uzupełniane wymyślonymi wartościami.
+- **CONNECTING:** trwa próba połączenia / oczekiwanie na świeże dane.
+- **DEMO:** brak obu podstawowych odczytów po okresie oczekiwania. Wszystkie pokazywane wartości tego ekranu są symulacją. Status jest widoczny u góry i na dole.
+- **OFFLINE:** brak danych i wyłączone automatyczne DEMO.
+
+Po uzyskaniu rzeczywistego sygnału aplikacja wraca z DEMO do odczytów. Wykres jest czyszczony przy zmianie trybu, żeby nie mieszać historii demonstracyjnej z jazdą. Zero RPM przy wyłączonym silniku jest prawidłowym odczytem, jeżeli sygnał jest świeży.
+
+Moc KM/kW jest **obliczana** z odczytanego RPM i momentu, a nie mierzona na hamowni. Skala 700 KM nie jest ogranicznikiem mocy. Ciśnienie doładowania wymaga prawidłowych PID-ów MAP i ciśnienia atmosferycznego. Przy nasyceniu PID-u MAP aplikacja nie udaje dokładnego pomiaru.
+
+## 4. Gdzie są pełne błędy — także gdy ikona nie otwiera ekranu
+
+### W aplikacji
+
+Lewy dolny przycisk pokazuje stan połączenia i liczbę aktywnych komunikatów. Naciśnięcie otwiera pełny raport z przewijaniem stron. Przycisk **BŁĘDY** w menu prowadzi do tego samego raportu. Przy braku danych krótki błąd pojawia się również w dolnym pasku komunikatów.
+
+Raport zawiera etap startu, renderer, interfejsy, świeżość odczytów, pochodzenie wartości, stosy błędów oraz zaakceptowane albo odrzucone polecenia klapy. Hasła/tokeny w tekstach są maskowane.
+
+### Na telefonie, niezależnie od ekranu aplikacji
+
+Dla podanego wcześniej adresu MGU:
+
+```text
+http://172.16.222.97:8471
 ```
-http://172.16.222.97:8484
+
+Port **8471**, nie 8470. Telefon musi mieć połączenie z tą samą siecią / dostępem do samochodu, przez który otwierasz MGU Store. Gdy IP samochodu się zmieni, użyj nowego IP z portem 8471. Aktualnie wykryty adres znajduje się również w ustawieniach aplikacji.
+
+Panel pokazuje trzy aplikacje, wersje, etap startu, znacznik aktywności procesu, stan renderera i komplet błędów. Przy każdej aplikacji:
+
+- **Pobierz pełny raport** — stan i log aplikacji w JSON, także błąd inicjalizacji SDK.
+- **Dziennik procesu UID** — systemowy dziennik właściwego UID, nie dziennik aktualizatora.
+- **Ostatnia kopia ustawień** — ostatni zapisany plik ustawień, nie ECU.
+
+Jeżeli proces nie uruchomił się wystarczająco daleko, panel mówi **NO_RUNTIME_REPORT / BRAK RAPORTU**. Nie pokazuje wtedy fałszywego „działa”. Stary raport jest oznaczony **STALE_REPORT**. Brak wpisów w dzienniku systemowym nie jest dowodem poprawnego działania.
+
+Gdy strona 8471 nie odpowiada, sprawdź w MGU Store instalację narzędzia **M3 Suite Diagnostics**, jego status oraz IP. Samo zainstalowanie jednej aplikacji z pominięciem zależności nie uruchomi serwera diagnostycznego.
+
+Panel jest lokalny i tylko do odczytu. Nie udostępnia endpointu wysyłania poleceń do ECU, zapisu plików ani dowolnych komend terminala. Nie wystawiaj go przez przekierowanie portów do internetu. Pełne raporty mogą zawierać lokalne adresy i ścieżki: nie publikuj ich bez przeglądu.
+
+## 5. Zakres trzech aplikacji
+
+**M3 Dual Gauges:** dwa różne zegary RPM/prędkości, dodatkowe parametry, wykres RPM z 60 sekund, motywy, sygnalizacja wysokich obrotów, kopia ustawień i diagnostyka.
+
+**M3 Cockpit Studio:** 12 wybieranych motywów w czterech układach / różnych paletach, telemetria i wykres. Jest aplikacją ekranu centralnego, nie zamiennikiem fabrycznych zegarów za kierownicą.
+
+**Pops Controller:** rzeczywista ścieżka odczytu danych, parametry/wykres/silnik, potwierdzane polecenia MHD otwarcia/zamknięcia/oddania klapy i niezależny odczyt jej pozycji. Sterowanie wymaga obsługi odpowiednich poleceń przez mapę/DME; odpowiedź negatywna albo timeout jest pokazany jako błąd. Samo ACK nie jest utożsamiane z fizycznym ruchem klapy.
+
+**Niezaimplementowane i jawnie oznaczone:** regulacja długości/agresywności popsów MHD, kopia lub flash mapy ECU, przełączanie map, integracja tylnej kamery, synteza dźwięku przez fabryczny system audio i podmiana ekranu za kierownicą. Lokalne profile Comfort/Sport/Sport+/P/N nie przełączają fizycznego trybu jazdy ani parametrów silnika. Nie ma ukrytego kodu, który te funkcje pozoruje jako wykonane.
+
+## 6. Wymiary i uruchamianie
+
+Rysowanie używa zgodnego protokołu `renderer/kit/renderd.js` z działających zegarów, bez blokady wymagającej wyłącznie `mgu-render/1`.
+
+Układ referencyjny ID8: 2880 × 960 jednostek projektowych; natywny górny pasek 0–76, obszar aplikacji 76–840, klimatyzacja 840–960. Renderer skaluje całość do rzeczywistego panelu. Nie są to gwarantowane fizyczne piksele LCD. Poza obszarem aplikacji obraz jest przezroczysty, dotyk nie jest przejmowany.
+
+Źródłowy pakiet OAP ma `mgu-app.json`, komplet `src/main.js` i `src/host.js`, oraz staged `package/` z runtime, zasobami, manifestami i RHMI. Listy modułów oraz wersje są sprawdzane także wewnątrz gotowych TGZ. `appletId` przydziela instalator, nie jest narzucony na sztywno.
+
+Nazwy i ikony są własne, spójne w Store i RHMI. Źródłowe SVG i PNG są w `SOURCE/icons`. Nie ma obrazków ani filmów pobieranych z internetu w czasie pracy.
+
+## 7. Sprawdzenie i przebudowanie
+
+Na komputerze z Pythonem 3 i Node.js:
+
+```text
+python SOURCE/build.py
+node TESTS/test.js
+python TESTS/validate_packages.py
 ```
 
-To **port 8484**, a nie dotychczasowe **8470** panelu MGU Store. Adres IP jest adresem podanym przez użytkownika. Usługa nasłuchuje na tym adresie oraz lokalnie `127.0.0.1`; przy innym adresie jednostki konfiguracja usługi wymaga dostosowania. Telefon musi mieć lokalny dostęp do tej samej jednostki.
+Do samego użycia przygotowanych TGZ nie trzeba uruchamiać tych poleceń na komputerze. MGU Store łączy moduły z SDK obecnym w samochodzie.
 
-W panelu wybierz aplikację, kliknij jej ikonę w BMW, a następnie wybierz **Logi uruchomienia**. Do pobrania są pełny raport JSON i dziennik filtrujący rzeczywisty UID aplikacji. Raport pokazuje również obecność pakietu, aktywnych procesów, etap startu i wiek ostatniego statusu. Brak wpisów jest oznaczony jako brak danych, nigdy jako udane uruchomienie. Nie ma gwarancji, że dziennik systemowy zawiera każde zdarzenie z zamkniętych komponentów BMW; dlatego dodano również własne pliki startowe.
+`TESTS/results.json` zawiera wynik testów fixture/protokołu; `TESTS/package-results.json` kontrolę instalatorów; `DOCS/PACKAGE_SIZES.json` rozmiary. Podglądy `DOCS/PREVIEW` są wykonane lokalnie na jawnie demonstracyjnych wartościach, nie są zdjęciami działającego BMW.
 
-Panel jest tylko do odczytu, bez uruchamiania dowolnych poleceń, wgrywania plików i operacji ECU. Ogranicza dostęp do lokalnego adresu/hotspotu. Nie przekierowuj portu do internetu. Raporty mogą zawierać szczegóły pojazdu: przejrzyj je przed publicznym udostępnieniem.
-
-Jeśli panel się nie otwiera, sprawdź najpierw instalację `M3 Diagnostics`, jej usługę i połączenie lokalne — brak tego panelu nie oznacza awarii ECU. Dostępny jest również odczytowy skrypt `tools/collect-startup.sh` dla istniejącego dostępu SSH. Nie wymaga flashowania ani ponownego odblokowywania jednostki.
-
-## Kopia — co i kiedy zapisuje
-
-Przycisk **Kopia → Wykonaj kopię ustawień** tworzy rzeczywisty plik JSON. Kopia powstaje także przy starcie nowego kodu i przed zapisaniem zmienionych ustawień. Jeśli automatyczna kopia przed zmianą ustawień się nie uda, zapis nowych ustawień zostaje przerwany i jest rejestrowany błąd.
-
-Kopia zawiera ustawienia tej aplikacji, lokalne profile i — przy kopii ręcznej — raport diagnostyczny. Zachowuje również zawartość wcześniejszych własnych plików `profiles-v4.json` i `config.json`, jeśli są dostępne w katalogu danych. Nie przenosi tych ustawień do ECU. Nowy interfejs używa własnego pliku `m3-settings.json`; stare pliki nie są kasowane.
-
-Kopie znajdują się w `data/m3-backups/settings-*.json`. Zachowywanych jest ostatnich 20; można je pobrać z nowego panelu. Każda ma `kind: APP_SETTINGS_ONLY_NOT_ECU` i `ecuMapIncluded: false`. To nie jest eksport mapy MHD, odczyt pamięci ECU ani zamiennik pliku tunera.
-
-## Wygląd i ikony
-
-Zestaw ma własne ikony: dwa sportowe łuki, płomień i panel zegarów. Zastąpiono nazwę/ikonę Car Data w zasobach aplikacji, bez usuwania informacji o autorach z licencji. Cockpit ma 12 wybieranych układów/palet rysowanych wektorowo zamiast dużych gotowych bitmap.
-
-Układ wykorzystuje wymiary projektowe renderera **2880 × 960**. Faktyczny obszar aplikacji w dostarczonym rendererze iDrive 8 to **Y = 76…840**. Nowe elementy są wewnątrz tego obszaru; górny pasek i klimatyzacja pozostają poza nim. Nie należy utożsamiać każdej jednostki projektowej z fizycznym pikselem każdej wersji LCD.
-
-Nie dołączono plików czcionek BMW ani systemowych. Kod może korzystać z atlasów już zainstalowanych na jednostce; przy ich niedostępności używa własnego awaryjnego rysowania liter. Zrzuty w raporcie pochodzą z lokalnego renderowania, nie z Twojego samochodu.
-
-## Co sprawdzono, a czego nie
-
-`RAPORT_TESTOW.md` i pliki JSON opisują rzeczywiście wykonane testy: start przez referencyjny host przy zamockowanym SDK/socketach, przejścia stanów danych, przeliczenia, uprawnienia logiczne interfejsu odczytowego, kopie, panel HTTP, rysowanie ekranów i integralność pakietów.
-
-**Nie wykonano testu na Twojej jednostce MGU ani pomiaru rzeczywistych danych BMW.** Powodzenie lokalnego testu hosta nie jest gwarancją zgodności konkretnego firmware, jego uprawnień SOME/IP lub SDK. W tej paczce diagnostyka ma wskazać rzeczywisty etap zatrzymania, gdyby środowisko pojazdu odrzuciło uruchomienie.
-
-Nie należy uznawać tego wydania za ukończony sterownik MHD. Funkcje niepodłączone do zweryfikowanego interfejsu zostały zablokowane i nazwane, a nie ukryte za przyciskiem pozornego sukcesu. Pierwszy test wykonaj na postoju; nie instaluj ani nie konfiguruj aplikacji podczas jazdy.
-
-## Źródła i licencje
-
-Dokładne źródła lokalne: `car-apps-main (1)(1).zip`, `M3_DUAL_GAUGES_0_3_4_POPRAWNE_WYMIARY_GITHUB.zip`, `BMW_M3_DWIE_APLIKACJE_LICENCJE_POPRAWIONE.zip` oraz pierwotny pakiet dwóch aplikacji. Licencje i NOTICE referencyjnego renderera zachowano w aplikacjach. `THIRD_PARTY_NOTICES.md` dokumentuje nowe zmiany i pochodzenie kodu.
-
-Publiczna dokumentacja formatu źródeł i zależności: https://github.com/robertnisipeanu/mgu-store/blob/main/docs/PUBLISHING.md
-
-Publiczny opis funkcji MHD S58: https://mhdtuning.com/products/mhd-super-license-for-s58
-
-Zachowanie plików licencyjnych nie nadaje dodatkowych praw do modyfikacji lub redystrybucji komponentów zewnętrznych. Przed publicznym udostępnieniem całego zmodyfikowanego repozytorium sprawdź warunki w `UPSTREAM-ITERIODEV-LICENSE.md`; nie zakładaj, że nazwa własnej aplikacji zmienia licencję podzespołów.
+Testy nie obejmują fizycznego MGU, faktycznej wersji mapy MHD ani ruchu klap. Pierwsze potwierdzenie rzeczywistego działania musi pochodzić z samochodu. Rozbudowana diagnostyka służy temu, aby kolejna niezgodność nie kończyła się samym „zainstalowano” i pustą ikoną.

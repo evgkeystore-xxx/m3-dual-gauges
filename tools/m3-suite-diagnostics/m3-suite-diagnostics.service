@@ -1,0 +1,16 @@
+[Unit]
+Description=M3 Suite local read-only diagnostics
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/node /var/opt/m3-suite-diagnostics/current/server.js
+Restart=on-failure
+RestartSec=10
+NoNewPrivileges=true
+ProtectSystem=full
+ProtectHome=true
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target

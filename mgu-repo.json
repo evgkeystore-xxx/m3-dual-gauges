@@ -3,16 +3,24 @@
   "apps": {
     "path": "apps/*",
     "manifest": "app.json",
+    "mguHmi": [
+      "ID8"
+    ],
     "build": {
       "node": "tools/prebuilt.js",
+      "args": [
+        "{dir}",
+        "{id}",
+        "{version}"
+      ],
       "output": "{dir}/{id}@{version}.tgz"
     },
     "uninstallable": true
   },
   "tools": [
     {
-      "id": "m3-diagnostics",
-      "path": "tools/m3-diagnostics"
+      "id": "m3-suite-diagnostics",
+      "path": "tools/m3-suite-diagnostics"
     }
   ]
 }

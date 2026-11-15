@@ -1,0 +1,42 @@
+{
+  "kind": "tool",
+  "id": "m3-suite-diagnostics",
+  "version": "1.0.0",
+  "title": "M3 Suite Diagnostics",
+  "description": "Lokalny panel pelnych bledow/startu trzech aplikacji. Port 8471. Tylko odczyt; bez ECU/flash.",
+  "optional": false,
+  "uninstallable": true,
+  "mguHmi": [
+    "ID8"
+  ],
+  "files": [
+    {
+      "path": "server.js",
+      "from": "server.js",
+      "mode": "0644"
+    },
+    {
+      "path": "index.html",
+      "from": "index.html",
+      "mode": "0644"
+    }
+  ],
+  "units": [
+    {
+      "name": "m3-suite-diagnostics.service",
+      "from": "m3-suite-diagnostics.service"
+    }
+  ],
+  "enable": [
+    {
+      "unit": "m3-suite-diagnostics.service",
+      "target": "multi-user.target"
+    }
+  ],
+  "recmgr": [
+    "m3-suite-diagnostics"
+  ],
+  "restart": [
+    "m3-suite-diagnostics.service"
+  ]
+}

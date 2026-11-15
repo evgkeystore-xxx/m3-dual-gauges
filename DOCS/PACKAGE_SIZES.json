@@ -1,0 +1,22 @@
+{
+  "m3_dual_gauges": {
+    "compressed": 223484,
+    "expanded": 363827,
+    "sha256": "b564486c4a725e735ba80e5a82d4d543d6902291841d69944a17d5ea0da09c14"
+  },
+  "ks_pops_controller": {
+    "compressed": 216597,
+    "expanded": 356978,
+    "sha256": "4284d54c1013ea183db49bd26bfbf4037db164fde5867c0756502fa21e4e3fb3"
+  },
+  "ks_m3_cockpit": {
+    "compressed": 215855,
+    "expanded": 356172,
+    "sha256": "04d067f004bad690afe2738094fb5fe52acadae1770323a20735309067cd7c17"
+  },
+  "m3-suite-diagnostics": {
+    "compressed": 5471,
+    "expanded": 11436,
+    "sha256": "ce156fe24668513eaacc4b7ba814e4a0108f08768fb2c379e873d5ad3c184bad"
+  }
+}

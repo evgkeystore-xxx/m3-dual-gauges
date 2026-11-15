@@ -1,0 +1,7 @@
+{
+  "parser": "acorn",
+  "ecmaVersion": 2017,
+  "productionFiles": 15,
+  "status": "PASS",
+  "note": "Syntax compatibility only; actual runtime tests used Node 22.16.0, not head-unit Node 8"
+}
