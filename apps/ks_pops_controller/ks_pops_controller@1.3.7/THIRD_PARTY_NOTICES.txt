@@ -1,1 +1,0 @@
-lib/mgu_render_client.js comes from robertnisipeanu/mgu-store (GPL-3.0-or-later), based on IterioDev community renderer kit (MIT notice in source). See LICENSE.GPL3.txt. No proprietary BMW SDK shipped.

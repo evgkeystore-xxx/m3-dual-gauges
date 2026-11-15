@@ -1,8 +1,8 @@
 {
   "id": "ks_pops_controller",
-  "version": "1.3.7",
+  "version": "1.4.0",
   "title": "Pops Controller",
-  "description": "Updated native MGU startup and module layout; original UI retained; demo-only ECU controls",
+  "description": "Odczyty na zywo, status i pelne bledy, automatyczne DEMO tylko bez danych. Nie zmienia mapy ECU. Kopia ustawien, nie mapy. Profile wydechu tylko lokalnie; sterowanie MHD niedostepne.",
   "mguHmi": [
     "ID8"
   ],
@@ -10,6 +10,8 @@
     "renderer"
   ],
   "requires": {
-    "mgu-deploy": "0.7.5"
-  }
+    "mgu-deploy": "0.7.5",
+    "m3-diagnostics": "1.0.0"
+  },
+  "icon": "icon.png"
 }

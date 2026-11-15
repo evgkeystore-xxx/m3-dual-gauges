@@ -1,0 +1,14 @@
+[Unit]
+Description=M3 Suite read-only startup diagnostics (no ECU writes)
+After=network.target oapcontroller.service
+[Service]
+Type=simple
+User=root
+ExecStart=/usr/bin/node /var/opt/m3-diagnostics/current/diagnostics-server.js
+Restart=on-failure
+RestartSec=10
+NoNewPrivileges=true
+StandardOutput=journal
+StandardError=journal
+[Install]
+WantedBy=multi-user.target

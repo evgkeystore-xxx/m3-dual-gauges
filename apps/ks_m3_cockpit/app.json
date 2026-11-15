@@ -1,8 +1,8 @@
 {
   "id": "ks_m3_cockpit",
-  "version": "1.0.7",
+  "version": "1.1.0",
   "title": "M3 Cockpit Studio",
-  "description": "Updated native MGU startup and module layout; original UI retained; demo-only ECU controls",
+  "description": "Odczyty na zywo, status i pelne bledy, automatyczne DEMO tylko bez danych. Nie zmienia mapy ECU. Kopia ustawien, nie mapy.",
   "mguHmi": [
     "ID8"
   ],
@@ -10,6 +10,8 @@
     "renderer"
   ],
   "requires": {
-    "mgu-deploy": "0.7.5"
-  }
+    "mgu-deploy": "0.7.5",
+    "m3-diagnostics": "1.0.0"
+  },
+  "icon": "icon.png"
 }
