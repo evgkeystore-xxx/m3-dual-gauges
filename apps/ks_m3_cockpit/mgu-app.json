@@ -1,0 +1,18 @@
+{
+  "schema": 1,
+  "id": "ks_m3_cockpit",
+  "version": "1.0.6",
+  "mguHmi": [
+    "ID8"
+  ],
+  "tree": "ks_m3_cockpit@1.0.6",
+  "modules": [
+    "src/cockpit.js",
+    "src/cluster_widget.js",
+    "src/mgu_render_client.js"
+  ],
+  "sdk": [
+    "oap-sdk/src/core/OnlineApp.js",
+    "oap-sdk/src/logging/logging"
+  ]
+}

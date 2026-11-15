@@ -1,19 +1,19 @@
-# M3 Dual Gauges 0.3.4 — poprawa obszaru ekranu iDrive 8
+# BMW M3 G80 — two independent OAP apps, revised packages
 
-Wersja 0.3.4 zachowuje działający kod startowy wersji 0.3.3. Zmieniony został tylko układ komponentów GPU i numer wersji w manifestach.
+Both apps preserve original IDs, visual assets, UI behavior and demo-only status. The source package layout is now aligned with the working M3 Dual Gauges deployment format. No ECU tuning, exhaust/fire control, camera access, cluster replacement, or live power adjustment is provided.
 
-Wymiary referencyjne wyciągnięte z dołączonego przez użytkownika Car Data 1.4.1, Drag Timer 1.2.0 i eDrive 1.1.0:
-- projekt renderera: 2880 × 960 jednostek (nie fizycznych pikseli LCD)
-- systemowy obszar u góry / zakładki: Y=76–248
-- główna treść: Y=248–816
-- dolny obszar systemowy i pasek klimatyzacji: poniżej Y=816
+## GitHub
+Upload the CONTENTS of this archive to the ROOT of your existing public repository, or use a separate repo. In MGU Store add the owner/repo branch main. Install **Pops Controller 1.3.6** and **M3 Cockpit Studio 1.0.6**.
 
-Komponenty M3 Dual Gauges 0.3.4:
-- tytuł: x=80, y=255, w=2720, h=48
-- RPM: x=270, y=315, w=1000, h=418
-- prędkość: x=1610, y=315, w=1000, h=418
-- podpisy: y=759, h=40
+## USB
+In each apps/<id>/ folder there is a TGZ source package. A separate USB folder in the downloadable combined archive provides these packages. The original third-party packages were not guaranteed to launch; successful build is different from successful on-device launch.
 
-Wszystkie komponenty mieszczą się w strefie 248–816. Wyrenderowany układ wymaga sprawdzenia na jednostce MGU; ta paczka nie potwierdza odczytów na żywo.
+## Changes
+- Both `mgu-app.json` files now use a version directory as `tree`.
+- Package metadata and application assets are flattened to the correct version-directory root.
+- Every JS source module is present in both source locations, and listed in the right order.
+- Source imports now resolve to adjacent modules without changing visuals or configured UI routes.
+- Original app IDs and RHMI application UUIDs preserved.
+- Uses installed `mgu-render` service; running from store depends on MGU firmware and renderer version.
 
-Instalacja: rozpakuj ZIP i podmień pliki w gałęzi main istniejącego repozytorium evgkeystore-xxx/m3-dual-gauges, zachowując apps/ oraz tools/. Odśwież MGU Store i sprawdź wersję 0.3.4.
+Test while parked. No guarantees of live ECU connection or reliable start on the actual head unit without on-device verification.

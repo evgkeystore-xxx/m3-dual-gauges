@@ -2,12 +2,23 @@
   "schema": 1,
   "components": [
     {
-      "id": "m3_dual_gauges",
+      "id": "ks_m3_cockpit",
       "kind": "app",
-      "path": "apps/m3_dual_gauges",
+      "path": "apps/ks_m3_cockpit",
       "build": "unit",
-      "title": "M3 Dual Gauges",
-      "description": "M3 Dual Gauges 0.3.4 — corrected module source paths",
+      "title": "M3 Cockpit Studio",
+      "description": "Updated native MGU startup and module layout; original UI retained; demo-only ECU controls",
+      "mguHmi": [
+        "ID8"
+      ]
+    },
+    {
+      "id": "ks_pops_controller",
+      "kind": "app",
+      "path": "apps/ks_pops_controller",
+      "build": "unit",
+      "title": "Pops Controller",
+      "description": "Updated native MGU startup and module layout; original UI retained; demo-only ECU controls",
       "mguHmi": [
         "ID8"
       ]
