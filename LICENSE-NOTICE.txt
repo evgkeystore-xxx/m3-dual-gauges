@@ -1,1 +1,0 @@
-The reference renderer and online-host are derived from the user-supplied IterioDev car-apps package. Preserve upstream license and NOTICE files in renderer/kit and refer to original upstream license for conditions.
