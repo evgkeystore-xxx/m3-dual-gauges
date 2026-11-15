@@ -7,7 +7,7 @@
       "path": "apps/m3_dual_gauges",
       "build": "unit",
       "title": "M3 Dual Gauges",
-      "description": "M3 Dual Gauges 0.3.3 — corrected module source paths",
+      "description": "M3 Dual Gauges 0.3.4 — corrected module source paths",
       "mguHmi": [
         "ID8"
       ]

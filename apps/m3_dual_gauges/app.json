@@ -1,0 +1,15 @@
+{
+  "id": "m3_dual_gauges",
+  "version": "0.3.4",
+  "title": "M3 Dual Gauges",
+  "description": "Two read-only gauges (RPM and speed) for iDrive 8; reference Car Data lifecycle",
+  "mguHmi": [
+    "ID8"
+  ],
+  "needs": [
+    "renderer"
+  ],
+  "requires": {
+    "mgu-deploy": "0.7.5"
+  }
+}

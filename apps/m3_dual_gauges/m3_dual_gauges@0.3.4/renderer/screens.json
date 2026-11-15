@@ -1,0 +1,104 @@
+{
+  "design": {
+    "w": 2880,
+    "h": 960
+  },
+  "screens": [
+    {
+      "name": "engine",
+      "kind": "gpu",
+      "title": "M3 Dual Gauges",
+      "entry": true,
+      "bg": "#050608",
+      "bgArea": "app",
+      "components": [
+        {
+          "name": "heading",
+          "rtype": "gpu",
+          "gpu": "text",
+          "x": 80,
+          "y": 255,
+          "w": 2720,
+          "h": 48,
+          "opts": {
+            "text": "M3 COMPETITION  |  DUAL GAUGES",
+            "size": 39,
+            "color": "#E6E7ED"
+          }
+        },
+        {
+          "name": "rpmDial",
+          "rtype": "gpu",
+          "gpu": "radial",
+          "x": 270,
+          "y": 315,
+          "w": 1000,
+          "h": 418,
+          "opts": {
+            "min": 0,
+            "max": 8000,
+            "value": null,
+            "label": "ENGINE SPEED",
+            "unit": "RPM",
+            "ticks": 8,
+            "tickDiv": 1000,
+            "majorEvery": 1,
+            "redFrom": 7000,
+            "color": "#FF3E58",
+            "decimals": 0
+          }
+        },
+        {
+          "name": "speedDial",
+          "rtype": "gpu",
+          "gpu": "needle",
+          "x": 1610,
+          "y": 315,
+          "w": 1000,
+          "h": 418,
+          "opts": {
+            "min": 0,
+            "max": 340,
+            "value": null,
+            "label": "SPEED",
+            "unit": "km/h",
+            "ticks": 17,
+            "redFrom": 320,
+            "color": "#B57BFF",
+            "decimals": 0
+          }
+        },
+        {
+          "name": "rpmLabel",
+          "rtype": "gpu",
+          "gpu": "text",
+          "x": 350,
+          "y": 759,
+          "w": 840,
+          "h": 40,
+          "opts": {
+            "text": "RPM  --",
+            "size": 27,
+            "color": "#FF526A",
+            "align": "center"
+          }
+        },
+        {
+          "name": "speedLabel",
+          "rtype": "gpu",
+          "gpu": "text",
+          "x": 1690,
+          "y": 759,
+          "w": 840,
+          "h": 40,
+          "opts": {
+            "text": "KM/H  --",
+            "size": 27,
+            "color": "#B57BFF",
+            "align": "center"
+          }
+        }
+      ]
+    }
+  ]
+}
