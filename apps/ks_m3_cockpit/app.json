@@ -1,0 +1,15 @@
+{
+  "id": "ks_m3_cockpit",
+  "version": "1.0.7",
+  "title": "M3 Cockpit Studio",
+  "description": "Updated native MGU startup and module layout; original UI retained; demo-only ECU controls",
+  "mguHmi": [
+    "ID8"
+  ],
+  "needs": [
+    "renderer"
+  ],
+  "requires": {
+    "mgu-deploy": "0.7.5"
+  }
+}

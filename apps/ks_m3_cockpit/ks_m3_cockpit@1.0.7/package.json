@@ -1,0 +1,45 @@
+{
+  "name": "ks_m3_cockpit",
+  "version": "1.0.7",
+  "description": "BMW M3 Competition Cockpit Studio — 12 motywow iDrive 8, eksperymentalny centralny widzet KOMBI, brak ECU / demo",
+  "private": false,
+  "main": "javascript/runner.js",
+  "oapAppSettings": {
+    "maxDiskUsage": 104857600,
+    "cpuLimit": 30,
+    "memoryThresholdKB": 262144,
+    "priority": "PRIO_MEDIUM",
+    "visibility": "FOREGROUND",
+    "latencyClass": "FOREGROUND",
+    "loggingId": "M3CL",
+    "userLoginRequired": false,
+    "backgroundPriority": 150,
+    "someipManifest": "manifest.json"
+  },
+  "files": [
+    "config",
+    "rhmiData",
+    "package.json",
+    "permissions.json",
+    "javascript",
+    "manifest.json",
+    "assets",
+    "THIRD_PARTY_NOTICES.txt",
+    "LICENSE.GPL3.txt"
+  ],
+  "dependencies": {
+    "oap-sdk": "24.10.2"
+  },
+  "engines": {
+    "node": ">=8.7.0"
+  },
+  "author": "Independent M3 Cockpit project",
+  "license": "GPL-3.0-or-later",
+  "mguHmi": [
+    "ID8"
+  ],
+  "mguLocalOnly": true,
+  "mguRequires": {
+    "mgu-deploy": "0.7.5"
+  }
+}
