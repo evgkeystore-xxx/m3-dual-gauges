@@ -1,8 +1,8 @@
 {
   "id": "ks_pops_controller",
-  "version": "2.7.0",
+  "version": "2.8.0",
   "title": "Pops Controller",
-  "description": "Telemetria i potwierdzane sterowanie klapa MHD. Brak API regulacji burble: profile tylko DEMO. Bez flash/przelaczania map.",
+  "description": "Pops Controller 2.8: natywny interfejs iDrive 8, stabilniejsze suwaki i logi, kamera DEMO przy braku obrazu OEM, bez flashowania mapy MHD. Suwaki Pops/Flame tylko lokalne.",
   "mguHmi": [
     "ID8"
   ],

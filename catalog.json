@@ -30,9 +30,9 @@
     },
     {
       "id": "ks_pops_controller",
-      "version": "2.7.0",
+      "version": "2.8.0",
       "title": "Pops Controller",
-      "description": "M Control 2.7.0: natywny UI oparty na przesłanym HTML, dotyk i odczyty LIVE/DEMO. Flame Mode jako profil lokalny; brak zapisu mapy ECU.",
+      "description": "Pops Controller 2.8: natywny interfejs iDrive 8, stabilniejsze suwaki i logi, kamera DEMO przy braku obrazu OEM, bez flashowania mapy MHD. Suwaki Pops/Flame tylko lokalne.",
       "mguHmi": [
         "ID8"
       ],
@@ -49,10 +49,10 @@
       "build": "unit",
       "icon": "apps/ks_pops_controller/icon.png",
       "artifact": {
-        "name": "ks_pops_controller@2.7.0.tgz",
-        "url": "apps/ks_pops_controller/ks_pops_controller@2.7.0.tgz",
-        "size": 3025395,
-        "sha256": "67e6f74fca2269b4cd2e7c44a7a96d47b31f189bce2f7c4dc97b4608bc33f740"
+        "name": "ks_pops_controller@2.8.0.tgz",
+        "url": "apps/ks_pops_controller/ks_pops_controller@2.8.0.tgz",
+        "size": 4388540,
+        "sha256": "3a42d4ec63fc05ae434b94e5cb7e4d3f1b333466df36826afb94207d5c06d7fb"
       }
     },
     {
