@@ -1,37 +1,11 @@
-# BMW M3 G80 — M Control 2.3 / iDrive 8
+# BMW M3 – Pops Controller 2.7.0 / MGU Store
 
-Trzy aplikacje MGU Store: **Pops Controller 2.3.0**, **M3 Dual Gauges 0.7.3**, **M3 Cockpit Studio 1.4.3**.
+Zestaw zawiera aktualizację `ks_pops_controller@2.7.0.tgz`, pozostałe dwie aplikacje (M3 Dual Gauges 0.7.6 / M3 Cockpit Studio 1.4.6), katalog `tools` oraz informacje licencyjne.
 
-## Wgranie na GitHub
-1. Zachowaj kopię dotychczasowego repozytorium.
-2. Rozpakuj ZIP do katalogu głównego `evgkeystore-xxx/m3-dual-gauges`. Nie wrzucaj całego ZIP-a jako jednego pliku.
-3. Zachowaj katalogi `apps`, `assets/icons`, `tools`, `packages`, `mgu-repo.json` i `catalog.json`.
-4. Usuń stare, nieużywane `.tgz` z poprzednich wersji z bieżącego drzewa GitHub; nie usuwaj własnych istotnych danych ani historii Git.
-5. Zatwierdź zmiany na `main`. W samochodzie odśwież źródło MGU Store i sprawdź wersje 2.3.0, 0.7.3, 1.4.3.
-6. Aktualizuj na postoju. Nie instaluj ponownie identycznej paczki w przypadku błędu; najpierw przeczytaj jego treść.
+**Jest to natywna aplikacja MGU, nie strona HTML ze zrzutem ekranu jako tłem.** Interfejs w `package/renderer/runtime/ui27.js` rysuje osobne elementy renderera i obsługuje zdarzenia dotyku. `DESIGN_SOURCE/popscontrol` to oryginalna strona HTML przesłana przez użytkownika, zachowana wyłącznie jako źródło wizualne.
 
-## Poprawki 2.2
-- Nowe ikony z rzeczywistych przezroczystych plików PNG w `assets/icons/`, w tym dedykowane grafiki: silnik Sport+, doładowanie, moment obrotowy, olej, płyn chłodzący, Ustawienia. Łącznie 28 ikon.
-- Każda ikona jest też osadzona wewnątrz TGZ (`package/renderer/assets/icons`) i w aktywnym module `package/renderer/runtime/icons21.js` (RGBA/zlib). **Nie ma zależności od Internetu.**
-- Długość, moc i opóźnienie: czerwona część suwaka kończy się przy uchwycie; pozostały zakres ma ciemne tło.
-- Pops Controller: Ustawienia można przeglądać na dwóch poziomach przez strzałkę po prawej albo gest przesunięcia po pustej części ekranu. Zawierają kopię lokalnych ustawień, ponawianie odczytów, ustawienia DEMO oraz stan ECU.
-- Status LIVE/DEMO zachowano, ale przy braku świeżych wartości nie są pokazywane wymyślone odczyty jako LIVE.
+Zachowano lokalne profile Pops / Flame, telemetrię, diagnostykę, licencje upstream i brak funkcji flashowania mapy. Obsługa kamery OEM nie jest zweryfikowana.
 
-## Interaktywny HTML
-Osobny plik `BMW_M3_M_CONTROL_2_2_INTERAKTYWNY_PODGLAD.html` **nie znajduje się w ZIP**. Działa offline na komputerze i telefonie: trzy aplikacje, 4 tryby jazdy, suwaki, zakres RPM, Ustawienia, przewijanie w dół, logi, backup JSON. **Nie łączy się z samochodem.**
+1. Rozpakuj ZIP. 2. Wgraj jego zawartość do głównego katalogu repozytorium GitHub, nie sam plik ZIP. 3. Zatwierdź `main`. 4. Odśwież źródło w MGU Store i wybierz Pops Controller 2.7.0.
 
-## Bezpieczeństwo
-- Nie zmieniamy ani nie flashujemy pojedynczej mapy MHD ~700 KM. Brak funkcji przywracania fabrycznej mapy ECU.
-- "Kopia" oznacza kopię ustawień aplikacji — NIE kopię oprogramowania/kalibracji ECU.
-- Suwaki popsów to wyraźnie lokalne profile bez niezweryfikowanego zapisu MHD. Sterowanie klapą (jeśli aktywne) wymaga odpowiedzi DME i sprawdzenia postoju.
-- Kamera OEM bez zweryfikowanego interfejsu zgłasza brak obsługi, nie prezentuje fikcyjnej transmisji.
-
-## Testy
-31/31 testów symulacji protokołu, bezpiecznego odczytu, dotyku i rendererów; walidacja 3 TGZ, JavaScript, JSON, ikon, SHA256 i limitu 64 MB. Ponadto lokalny test przycisków i gestów w HTML.
-**To nie jest potwierdzenie na fizycznym MGU**, ani gwarancja zgodności z konkretnym firmware BMW.
-
-## Zmiany 2.3
-- Nowe i niezależne ikony Sport+, silnika, mocy, momentu, doładowania, oleju, płynu chłodzącego i Ustawień.
-- Usunięto napis „Dotyk” z dolnego paska. Dane o dotyku zachowano wyłącznie w diagnostyce.
-- Nie zmieniano protokołu renderera ani sposobu odczytu ECU.
-- Interaktywny HTML jest dostarczony osobno, poza paczką GitHub.
+Zobacz `README_27.md`, `TEST_27.md`.

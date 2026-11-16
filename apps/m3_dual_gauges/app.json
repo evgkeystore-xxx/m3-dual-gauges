@@ -1,6 +1,6 @@
 {
   "id": "m3_dual_gauges",
-  "version": "0.7.3",
+  "version": "0.7.6",
   "title": "M3 Dual Gauges",
   "description": "Wspolny zgodny renderer; rzeczywiste odczyty, pelna diagnostyka i oznaczone DEMO po braku danych. Bez flash/przelaczania map.",
   "mguHmi": [

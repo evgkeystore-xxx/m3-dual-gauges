@@ -3,7 +3,7 @@
   "components": [
     {
       "id": "m3_dual_gauges",
-      "version": "0.7.3",
+      "version": "0.7.6",
       "title": "M3 Dual Gauges",
       "description": "Wspolny zgodny renderer; rzeczywiste odczyty, pelna diagnostyka i oznaczone DEMO po braku danych. Bez flash/przelaczania map.",
       "mguHmi": [
@@ -22,17 +22,17 @@
       "build": "unit",
       "icon": "apps/m3_dual_gauges/icon.png",
       "artifact": {
-        "name": "m3_dual_gauges@0.7.3.tgz",
-        "url": "apps/m3_dual_gauges/m3_dual_gauges@0.7.3.tgz",
-        "size": 1640796,
-        "sha256": "e670e72ce448830dba9b33b997d2521698327fbd768ff6daaa7b02751bb192b5"
+        "name": "m3_dual_gauges@0.7.6.tgz",
+        "url": "apps/m3_dual_gauges/m3_dual_gauges@0.7.6.tgz",
+        "size": 1854658,
+        "sha256": "3e856a30a39b7146227d05dfa2d8ff53082f51e9f4771f668ed71191a3c72d53"
       }
     },
     {
       "id": "ks_pops_controller",
-      "version": "2.3.0",
+      "version": "2.7.0",
       "title": "Pops Controller",
-      "description": "Telemetria i potwierdzane sterowanie klapa MHD. Brak API regulacji burble: profile tylko DEMO. Bez flash/przelaczania map.",
+      "description": "M Control 2.7.0: natywny UI oparty na przesłanym HTML, dotyk i odczyty LIVE/DEMO. Flame Mode jako profil lokalny; brak zapisu mapy ECU.",
       "mguHmi": [
         "ID8"
       ],
@@ -49,15 +49,15 @@
       "build": "unit",
       "icon": "apps/ks_pops_controller/icon.png",
       "artifact": {
-        "name": "ks_pops_controller@2.3.0.tgz",
-        "url": "apps/ks_pops_controller/ks_pops_controller@2.3.0.tgz",
-        "size": 1640006,
-        "sha256": "6fc3d59fe06a3006822684ecd4e61d66d583933a3a59403942fc36c134b8a950"
+        "name": "ks_pops_controller@2.7.0.tgz",
+        "url": "apps/ks_pops_controller/ks_pops_controller@2.7.0.tgz",
+        "size": 3025395,
+        "sha256": "67e6f74fca2269b4cd2e7c44a7a96d47b31f189bce2f7c4dc97b4608bc33f740"
       }
     },
     {
       "id": "ks_m3_cockpit",
-      "version": "1.4.3",
+      "version": "1.4.6",
       "title": "M3 Cockpit Studio",
       "description": "Wspolny zgodny renderer; rzeczywiste odczyty, pelna diagnostyka i oznaczone DEMO po braku danych. Bez flash/przelaczania map.",
       "mguHmi": [
@@ -76,10 +76,10 @@
       "build": "unit",
       "icon": "apps/ks_m3_cockpit/icon.png",
       "artifact": {
-        "name": "ks_m3_cockpit@1.4.3.tgz",
-        "url": "apps/ks_m3_cockpit/ks_m3_cockpit@1.4.3.tgz",
-        "size": 1640122,
-        "sha256": "34e7ab99df697e522ce87990fa552f30f65c685fe863e9a5972937ba7918e146"
+        "name": "ks_m3_cockpit@1.4.6.tgz",
+        "url": "apps/ks_m3_cockpit/ks_m3_cockpit@1.4.6.tgz",
+        "size": 1844851,
+        "sha256": "3f92445c58ec6f6a15f82252ee57017091f5c7ef9b18d1508d2d1704f2ce454a"
       }
     },
     {

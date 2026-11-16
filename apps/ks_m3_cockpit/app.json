@@ -1,6 +1,6 @@
 {
   "id": "ks_m3_cockpit",
-  "version": "1.4.3",
+  "version": "1.4.6",
   "title": "M3 Cockpit Studio",
   "description": "Wspolny zgodny renderer; rzeczywiste odczyty, pelna diagnostyka i oznaczone DEMO po braku danych. Bez flash/przelaczania map.",
   "mguHmi": [
